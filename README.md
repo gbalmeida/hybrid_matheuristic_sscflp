@@ -16,7 +16,4 @@ Instructions to run on a linux operating system:
 
 5) To run on an "instance name" file use the command ./sscflp "instance name"
 
-6) OR-4 and TBED1 instances can be downloaded from the link
-
-https://drive.google.com/file/d/1oHT5ilxg00n3vEY-2LOofgdx21fbW0Nh/view?usp=sharing
 
