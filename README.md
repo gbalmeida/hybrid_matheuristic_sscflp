@@ -2,9 +2,7 @@
 
 Matheuristic algorithm code for Single Source Capacitated Location Problem
 
-It was shown that the algorithm generates quality solutions for large SSCFLP instances
-
-Instructions to run on a linux operating system:
+It was shown that the algorithm generates quality solutions for very large-scale SSCFLP instances
 
 Instructions to run on a linux operating system:
 
