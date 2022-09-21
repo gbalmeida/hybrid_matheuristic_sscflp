@@ -1,5 +1,3 @@
-// artigo internacional 
-
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -60,12 +58,9 @@ vector<int> clientes_de_melhora;
 vector<int> destinos_de_melhora;
 vector<double> melhoras;
 
-//explora toda a vizinhança
-//cout << "começa a explorar a vizinhnaça:" << endl;
+
 for (int i = 0; i < n; i++){  
 for (std::list<int>::iterator k3 = abertas.begin(); k3 != abertas.end(); k3++ ){
-
-
 
 if ( (c[i][*k3]*d[i] < c[i][atende[i]]*d[i]) && (pen[*k3] + d[i] <= 0) && (s[atende[i]].size() > 1.1) && (*k3 != atende[i])  ){   
 
@@ -79,12 +74,7 @@ melhoras.push_back(ganho);  //valor negativo
 }
 //cout << "Melhoras:" << endl;
 
-/*
-for (int i = 0; i < clientes_de_melhora.size(); i++)
-{
-cout << clientes_de_melhora[i] << " " << destinos_de_melhora[i] << " " << melhoras[i] << " " << s[atende[clientes_de_melhora[i]]].size() << endl;
-}
-*/
+
 
 if (clientes_de_melhora.size() == 0)   //se não houve nenhum movimento deve fornecer a solução corrente
 {
@@ -93,7 +83,7 @@ if (clientes_de_melhora.size() == 0)   //se não houve nenhum movimento deve for
 else   // se houve pelo menos uma melhora 
 { 
 
-//ordenar as melhoras 
+
      for (int i = 0; i < melhoras.size(); i++)
      {
      int melhor_melhora = i;
@@ -104,7 +94,7 @@ else   // se houve pelo menos uma melhora
         melhor_melhora = j;  //indice do mais proximo ocupa a posicao j   
         }    
     }
-    //cout << cplex2.getReducedCost(y2[vgrupo2[menor_custo]]) << " ";
+   
     if (melhor_melhora != i)
     {
 
@@ -128,15 +118,9 @@ else   // se houve pelo menos uma melhora
     }
 
 
-    /*
-    cout << "Melhoras ordenadas:" << endl;
-    for (int i = 0; i < clientes_de_melhora.size(); i++)
-    {
-    cout << clientes_de_melhora[i] << " " << destinos_de_melhora[i] << " " << melhoras[i] << endl;
-    }
-    */
 
-    //faz os movimentos na ordem
+
+
     for (int i = 0; i < clientes_de_melhora.size(); i++)
     {
     
@@ -167,7 +151,7 @@ else   // se houve pelo menos uma melhora
 
 void Movement2 (int m, int n, vector<list<int>>&s , double &fo, vector<double> &pen, vector<int> &atende, vector<vector<double>> c, vector<double> d, vector<double> f )
 {
-//cout << "----------------------------------------" << endl;
+
 
 bool pare = false;
 
@@ -178,9 +162,6 @@ melhorou = false;
 vector<int> clientes_de_melhora1;
 vector<int> clientes_de_melhora2;
 vector<double> melhoras;
-
-//explora toda a vizinhança
-//cout << "Começa a explorar a vizinhança:" << endl; 
 
 for(int i1=0 ; i1 < n-1 ; i1++){
 for(int i2= i1+1 ; i2 < n ; i2++) {
@@ -196,14 +177,7 @@ melhoras.push_back(ganho);  //valor negativo
 
 }
 }
-//cout << "Quantidade de melhoras:" << clientes_de_melhora1.size() << endl;
-/*
-cout << "Melhoras:" << endl;
-for (int i = 0; i < clientes_de_melhora1.size(); i++)
-{
-cout << clientes_de_melhora1[i] << " " << clientes_de_melhora2[i] << " " << melhoras[i] << endl;
-}
-*/
+
 
 if (clientes_de_melhora1.size() == 0)   //se não houve nenhum movimento deve fornecer a solução corrente
 {
@@ -212,7 +186,7 @@ if (clientes_de_melhora1.size() == 0)   //se não houve nenhum movimento deve fo
 else   // se houve pelo menos uma melhora 
 { 
 
-//ordenar as melhoras 
+
      for (int i = 0; i < melhoras.size(); i++)
      {
      int melhor_melhora = i;
@@ -223,8 +197,7 @@ else   // se houve pelo menos uma melhora
         melhor_melhora = j;  //indice do mais proximo ocupa a posicao j   
         }    
     }
-    //cout << cplex2.getReducedCost(y2[vgrupo2[menor_custo]]) << " ";
-    if (melhor_melhora != i)
+      if (melhor_melhora != i)
     {
 
     int temp = clientes_de_melhora1[i];     
@@ -245,18 +218,7 @@ else   // se houve pelo menos uma melhora
 
 
     }
-    
-    /*
-    cout << "Melhoras ordenadas:" << endl;
-    for (int i = 0; i < clientes_de_melhora1.size(); i++)
-    {
-    cout << clientes_de_melhora1[i] << " " << clientes_de_melhora2[i] << " " << melhoras[i] << endl;
-    }
-    */
-    
 
-
-    //faz os movimentos na ordem
     int movimentos_feitos = 0;
     for (int i = 0; i < clientes_de_melhora1.size(); i++)
     {
@@ -278,20 +240,13 @@ else   // se houve pelo menos uma melhora
     atende[clientes_de_melhora1[i]] = temp4;
     movimentos_feitos = movimentos_feitos + 1;
 
-    
-
-    
-
+ 
     }
 
 
         
     }
-    /*
-    cout << "Quantidade de movimentos feitos: " << movimentos_feitos << endl;  
-    cout << "Novo fo : " << fo << endl;
-    cout << "----------------------------------------------------------------------" << endl;
-    */
+
 } //fim else;
 
 } // fim while;
@@ -358,7 +313,6 @@ fo_nova = fo + dif_transporte - f[*k1] ;
 
 
 if (fo_nova < fo_melhor) {
-//guardar desaloca = j1 e aloca = j2
 desaloca = *k1;
 aloca = *k2;
 fo_melhor = fo_nova;  
@@ -377,8 +331,6 @@ if (melhorou == false)   //se não houve nenhum movimento deve fornecer a soluç
 }
 else   // se houve pelo menos uma melhora deve atualizar a solucao corrente
 { 
-
-//atualiza penalidades 
 chega_a_mais = 0;  
 std::list<int>::iterator k;
 for ( k = s[desaloca].begin(); k != s[desaloca].end(); k++)
@@ -389,8 +341,6 @@ for ( k = s[desaloca].begin(); k != s[desaloca].end(); k++)
 pen[aloca] = pen[aloca] + chega_a_mais;
 pen[desaloca] = -p[desaloca];
 
-
-//atualiza solucao e lista de abertas e fechadas e atende
 for (k = s[desaloca].begin(); k != s[desaloca].end(); k++)
 {
       s[aloca].push_back(*k);
@@ -400,8 +350,6 @@ abertas.remove(desaloca);
 fechadas.push_back(desaloca);
 s[desaloca].clear();
 
-
-//atualiza funcao objetivo
 fo = fo_melhor;
 
 }
@@ -483,32 +431,6 @@ while (parada == false)
  {
  fo_antes = fo;
    Movement1(m, n, s , fo, pen,atende, c,  d,  f, abertas, fechadas);
- 
-//cout << "fo" << fo << endl;
- //double fo_copia_confere6 = 0;
-
-//criar lista de abertas 
-//criar lista de fechadas
-
-
-
-/*
-for (int j = 0; j < m; j++){
-  if (!s[j].empty())
-  {
-     
-      fo_copia_confere6 += f[j]  ;
-      //cout << fo_copia2_confere << endl;
-  for ( std::list<int>::iterator k = s[j].begin(); k != s[j].end(); k++ )
-  {
-       fo_copia_confere6 += d[*k]*c[*k][atende[*k]] ;
-       
-  }
-
-  }
-  }
-cout << "confere:" << fo_copia_confere6 << endl;
-*/
   
  if (fo_antes <= fo)
  {
@@ -532,31 +454,6 @@ cout << "confere:" << fo_copia_confere6 << endl;
  fo_antes = fo;
  Movement2(m, n, s , fo, pen,atende, c,  d,  f);
 
-//cout << "fo" << fo << endl;
- //double fo_copia_confere6 = 0;
-
-//criar lista de abertas 
-//criar lista de fechadas
-
-
-
-/*
-for (int j = 0; j < m; j++){
-  if (!s[j].empty())
-  {
-     
-      fo_copia_confere6 += f[j]  ;
-      //cout << fo_copia2_confere << endl;
-  for ( std::list<int>::iterator k = s[j].begin(); k != s[j].end(); k++ )
-  {
-       fo_copia_confere6 += d[*k]*c[*k][atende[*k]] ;
-       
-  }
-
-  }
-  }
-cout << "confere:" << fo_copia_confere6 << endl;
-*/
  if (fo_antes <= fo)
  {
      iter_sem_melhora = iter_sem_melhora + 1;
@@ -573,40 +470,11 @@ cout << "confere:" << fo_copia_confere6 << endl;
  }
 
 
-
-
   if (parada == false) 
  {
  fo_antes = fo;
 
  Movement3(m, n, s , fo, pen,atende, c,  d,  f, abertas, fechadas, p);
-
-
-//cout << "fo" << fo << endl;
-// double fo_copia_confere6 = 0;
-
-//criar lista de abertas 
-//criar lista de fechadas
-
-
-
-/*
-for (int j = 0; j < m; j++){
-  if (!s[j].empty())
-  {
-     
-      fo_copia_confere6 += f[j]  ;
-      //cout << fo_copia2_confere << endl;
-  for ( std::list<int>::iterator k = s[j].begin(); k != s[j].end(); k++ )
-  {
-       fo_copia_confere6 += d[*k]*c[*k][atende[*k]] ;
-       
-  }
-
-  }
-  }
-cout << "confere:" << fo_copia_confere6 << endl;
-*/
 
  if (fo_antes <= fo)
  {
@@ -639,7 +507,6 @@ cout << "confere:" << fo_copia_confere6 << endl;
 void ILS_1 (int m, int n, vector<list<int>>&s , double &fo, vector<double> &pen, vector<int> &atende, vector<vector<double>> c, vector<double> d, vector<double> f, list<int> &abertas, list<int> &fechadas, vector<int>facilidades_potenciais, vector<double> p, int tamanho_instancia )
 {
 
-//comeca ils 
 double fstar = fo;
 //int vezesmax = ILSmax; 
 vector<list<int>> s_copia(m);
@@ -663,7 +530,7 @@ else
 fechadas_copia.push_back(j);
 }
 }
-// criar pen copia
+
 for (int j = 0; j < m; j++)
 {
     pen_copia[j] = pen[j];
@@ -700,28 +567,17 @@ for (int i = 0; i < facilidades_potenciais.size(); i++)
 
 for (int i = 0; i < facilidades_potenciais.size(); i++)
 {
- //cout << facilidades_potenciais[i] << endl;   
+
  std::list<int>::iterator k = find(abertas.begin(), abertas.end(), facilidades_potenciais[i]);
  if (*k != facilidades_potenciais[i])
  {
-     //cout << "não encontrou no conjunto de abertas" << endl;
+     
      facilidades_potenciais_fechadas.push_back(facilidades_potenciais[i]);
  }
 }
-
-
 int j = 0;
-//cout << "Tamanho facilidade potenciais: " << facilidades_potenciais.size();
-//cout << "Tamanho facilidades abertas: " << abertas.size();
-//cout << "Explora a vizinhança de tamanho: " << facilidades_potenciais_fechadas.size() << endl;
 while (j < facilidades_potenciais_fechadas.size() )  //explora toda vizinhança uma única vez
 {
-
-//cout <<  facilidades_potenciais_fechadas[j] << " ";
-
-
-
-
 double limitante = 0;
 fo_copia = fo_copia + f[facilidades_potenciais_fechadas[j]];
 abertas_copia.push_back(facilidades_potenciais_fechadas[j]);
@@ -796,17 +652,13 @@ while (pare == false)
 
 } // termino das realocações para a facilidade potencial de posicao j;
 
-
 VND_ils1 (m, n, s_copia , fo_copia, pen_copia,atende_copia, c,  d,  f, abertas_copia, fechadas_copia, p);
 
 
 if (fo_copia < 0.9999*fstar) //houve melhora fica com a solucao
 {
 
-//cout << "melhorou" << endl;
 fstar = fo_copia;
-
-
 
 abertas.clear();
 fechadas.clear();
@@ -824,7 +676,7 @@ else
 fechadas.push_back(j);
 }
 }
-// criar pen copia
+
 for (int j = 0; j < m; j++)
 {
     pen[j] = pen_copia[j];
@@ -842,8 +694,7 @@ break; //
 }
 else 
 {   
-//cout << "nao houve melhora" << endl;    
-//facilidades_proibidas.push_back(facilidades_potenciais_fechadas[j]);
+
 fechadas_copia.clear();
 abertas_copia.clear();
 for (int j = 0; j < m; j++){
@@ -860,7 +711,7 @@ else
 fechadas_copia.push_back(j);
 }
 }
-// criar pen copia
+
 for (int j = 0; j < m; j++)
 {
     pen_copia[j] = pen[j];
@@ -872,8 +723,7 @@ for (int i = 0; i < n; i++)
 // criar fo copia
 fo_copia = fstar;
 j = j + 1;
-//cout << j << " ";
-    
+   
 }
 
 
@@ -899,7 +749,6 @@ list<int> abertas_copia;
 list<int> fechadas_copia;
 double fo_copia;
 
-// criar s_copia abertas_copia e fechadas_copia
 for (int j = 0; j < tam_facilidades_potenciais; j++){
 if (! s[facilidades_potenciais[j]].empty() )
 {
@@ -914,12 +763,11 @@ else
 fechadas_copia.push_back(facilidades_potenciais[j]);
 }
 }
-// criar pen copia
+
 for (int j = 0; j < m; j++)
 {
     pen_copia[j] = pen[j];
 } 
-// criar fo copia e atende copia
 for (int i = 0; i < n; i++)
 {
     atende_copia[i] = atende[i];
@@ -950,19 +798,12 @@ for (std::list<int>::iterator k = abertas.begin(); k != abertas.end(); k++ )
       i = i+1;
   }
 
-
-
-
 list<int> lista_clientes_perturbados;
 int trocas = 0;
 int cliente_sorteado1;
 int cliente_sorteado2;
 while (trocas < (tamanho_instancia/250)*nivel)   
-
 {
-
-
-
     cliente_sorteado1 = rand() % n;  //sorteia um clientes
     cliente_sorteado2 = (rand()+1) % n; // sorteia um outro cliente
  
@@ -985,8 +826,6 @@ while (trocas < (tamanho_instancia/250)*nivel)
     atende_copia[cliente_sorteado1] = atende_copia[cliente_sorteado2];
     atende_copia[cliente_sorteado2] = temp;
     trocas = trocas + 1;
-
-
     }
     
     else
@@ -1000,10 +839,7 @@ while (trocas < (tamanho_instancia/250)*nivel)
 lista_clientes_perturbados.sort();
 lista_clientes_perturbados.unique();
 
-
-
 VND_ils2(m, n, s_copia , fo_copia, pen_copia,atende_copia, c,  d,  f, abertas_copia, fechadas_copia, p);
-
 
 if (fo_copia < 0.9999999*fstar) //houve melhora fica com a solucao
 {
@@ -1040,14 +876,9 @@ for (int i = 0; i < n; i++)
     atende[i] = atende_copia[i];
 } 
 fo = fstar; 
-// criar fo copia
-
-
-//cout << "houve melhora fstar é: " << fstar << endl;
 }
 else {   //se nao houve melhora
-// criar s_copia abertas_copia e fechadas_copia
-//cout << "nao houve melhora fstar é: " << fstar << endl;
+
 fechadas_copia.clear();
 abertas_copia.clear();
 for (int j = 0; j < m; j++){
@@ -1064,7 +895,7 @@ else
 fechadas_copia.push_back(j);
 }
 }
-// criar pen copia
+
 for (int j = 0; j < m; j++)
 {
     pen_copia[j] = pen[j];
@@ -1077,10 +908,9 @@ for (int i = 0; i < n; i++)
 fo_copia = fstar;
 
 
-
-if (nvezes >= vezesmax){ // não houe melhora e vai mudar de nível volta a solucao para inicial
-        nivel = nivel + 1;  //muda de nível
-        nvezes = 1;        //vezes nível = 2
+if (nvezes >= vezesmax){ 
+        nivel = nivel + 1;  
+        nvezes = 1;        
     }
 else
     {
@@ -1092,7 +922,6 @@ else
 
 
 }
-
 
 int main (int argc, char *argv[]) {
 ifstream arq(argv[1]);
@@ -1420,8 +1249,6 @@ double soma_capacidades = 0;
 
 //******************************************************************************************************************************
 cout << "Generating Initial Solution..." << endl;
-
-
 list<int> clientes_ja_alocados;
 int contador = 0;
 while (soma_capacidades < soma_demandas)
@@ -1598,31 +1425,21 @@ cout << "Objective value: " << fo;
 stop = clock();
 cout << "  cpu time : " << (float)(stop - inicio_CPU)/CLOCKS_PER_SEC << endl;
 /****************************************************************************************************/
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////ALGORITMO H-GVNS//////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-/****************************************************************************************************/
-
-int inter = 0;    //numero iteraoes
-bool parada2 = false;     //criterio de parada 1
-double gap = 100;            //gap subproblema é 1 
-double gap2 = 100;           //gap problema geral restrito é 1 
-double lb = 0;             //lower bound subproblema  é 0
-double lb2 = 0;             //lower bound problema geral restrito é 0
-double fo_antes2 = fo;         //guarda solucao antes do algoritmo
+int inter = 0;    
+bool parada2 = false;     
+double gap = 100;             
+double gap2 = 100;          
+double lb = 0;             
+double lb2 = 0;           
+double fo_antes2 = fo;         
 int conta = 0;
 bool aux2 = false;
-
-//cout << "teste22" << endl;
-
 cout << "PHASE I" << endl;
 while (parada2 == false) 
 {
 double fo_antes2 = fo;
 
 clock_t fim_CPU2 = clock();
-
-
 IloEnv env3;
 IloModel mod3(env3);
 IloCplex cplex3(mod3);
@@ -1685,8 +1502,6 @@ for (int j = 0; j <  facilidades_potenciais.size(); j++){
 mod3.add(r5 >= lb2);
 r5.end();
 
-
-
 vector<vector<int>> start1(n, vector<int>(facilidades_potenciais.size()));
 
 for (int i = 0; i < n; i++)
@@ -1711,7 +1526,6 @@ for (int i = 0; i < n ; i++)
     
   
 }
-
 
 
 IloNumVarArray startVar(env3);
@@ -1742,7 +1556,7 @@ gap2 = 100*cplex3.getMIPRelativeGap();
 
 fim_CPU2 = clock();
 float tempo = (float)(fim_CPU2 - inicio_CPU)/CLOCKS_PER_SEC ;
-if ((gap2 <= 0.0099) || (tempo > 21600))    //se encontrou o ótimo do problema geral restrito ou o tempo extrapolou o máximo para o algoritmo
+if ((gap2 <= 0.0099) || (tempo > 21600))   
 {
     parada2 = true;
 }
@@ -1794,34 +1608,23 @@ ILS_2 (m, n, s ,fo,pen, atende, c,d, f,abertas,fechadas, facilidades_potenciais,
 stop = clock();
 cout << "Objective value: " << fo;
 cout << "  cpu time : " << (float)(stop - inicio_CPU)/CLOCKS_PER_SEC << endl;
-//VNS(m, n, s ,fo,pen, atende, c,d, f,abertas,fechadas, facilidades_potenciais, tam_facilidades_potenciais, p, tamanho_instancia);
-//cout << "fo apos vns: " << fo << " " << endl;
+
 }
-
-
-
-
 aux2 = false;
 
 fim_CPU2 = clock();
-if( (fo >= 0.9999*fo_antes2) || ((float)(fim_CPU2 - inicio_CPU)/CLOCKS_PER_SEC > 21600))   //se não houver melhora de pelo menos 0,01% pare o algoritmo
+if( (fo >= 0.9999*fo_antes2) || ((float)(fim_CPU2 - inicio_CPU)/CLOCKS_PER_SEC > 21600))  
 {
 
     parada2 = true;
 }
-
 }
 
 cout << "Phase I ended" << endl;
-//cout << "gap:" << gap2 << endl;
 if ( (parada2 == true) && (gap2 > 0.01)  )
 {
 cout << "Starts phase II" << endl;;
 parada2 = false;
-
-
-
-
 while (parada2 == false) 
 {
 
@@ -1856,8 +1659,6 @@ expfo += fo1;
 IloAdd(mod, IloMinimize(env, expfo));
 expfo.end();
 
-
-
 //restricao de indivisibilidade*****************************************************************
 for (int i = 0; i < n; i++){
 			IloExpr r2(env);
@@ -1877,7 +1678,6 @@ for (int i = 0; i < n; i++){
 			r3.end();
 		} 
 
-
 IloExpr r5(env);
 for (int j = 0; j <  vetor_abertas.size(); j++){
 	
@@ -1889,7 +1689,6 @@ r5 += fo1;
 mod.add(r5 >= lb);  //adiciona restricao do lower bound do subproblema
 r5.end();
 
-
 vector<vector<int>> start1(n, vector<int>(vetor_abertas.size()));
 
 for (int i = 0; i < n; i++)
@@ -1899,8 +1698,6 @@ for (int i = 0; i < n; i++)
        start1[i][j] = 0;
     }
 }
-
-
 
 for (int i = 0; i < n ; i++)
 {
@@ -1940,16 +1737,12 @@ fstar2 = cplex.getObjValue();
 lb = cplex.getBestObjValue();	
 gap = 100*cplex.getMIPRelativeGap();
 
-
 cout << "Objective value: " << fo;
  stop = clock();
 cout << "  cpu time : " << (float)(stop - inicio_CPU)/CLOCKS_PER_SEC << endl;
 
-
-if(  fstar2 < fo) // o cplex não alterou solucão
+	if(  fstar2 < fo) // o cplex não alterou solucão
 {
-
-
 fo = fo1;
 for (int j = 0; j < vetor_abertas.size(); j++)
 {
@@ -1965,7 +1758,7 @@ for (int j = 0; j < vetor_abertas.size(); j++)
        fo = fo + c[i][vetor_abertas[j]] * d[i];
    }
    }
-   //fo = fstar2;
+  
    
 }
 
@@ -1973,13 +1766,7 @@ for (int j = 0; j < vetor_abertas.size(); j++)
 
 
 }
-
-
-
-//clock_t fim_CPU2 = clock();
-
 clock_t parex_CPU = clock();
-//float tempo = (float)(parex_CPU - inicio_CPU)/CLOCKS_PER_SEC ;
 if ((gap <= 0.0099) /*|| (tempo > 21600)*/)    //se encontrou o ótimo do problema geral restrito ou o tempo extrapolou o máximo para o algoritmo
 {
     parada2 = true;
@@ -2018,9 +1805,5 @@ for (int i = 0; i < n; i++)
     cout << atende[i] << " ";
 }
 cout << endl;
-
-
-
-
 
 }//fim algoritmo
